@@ -1,5 +1,6 @@
 package pl.jarocky.clustering.application;
 
-public class ClusteringController {
+public class ClusteringController 
+{
 	
 }
