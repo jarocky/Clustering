@@ -1,6 +1,6 @@
 package pl.jarocky.clustering.core;
 
-public class Kmeans
+public class ClusteringService
 {
 
 }

@@ -3,6 +3,9 @@ package pl.jarocky.clustering.utils;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
+
+import pl.jarocky.clustering.utils.exceptions.InvalidOperationException;
 
 public class FileService implements IFileService
 {
@@ -24,11 +27,11 @@ public class FileService implements IFileService
   }
 
   @Override
-  public String getNextLine() throws Exception
+  public String getNextLine() throws InvalidOperationException, IOException
   {
     if (!_initialized)
     {
-      throw new Exception("Use init to initialize");
+      throw new InvalidOperationException("Use init to initialize");
     }
 
     String line = _reader.readLine();

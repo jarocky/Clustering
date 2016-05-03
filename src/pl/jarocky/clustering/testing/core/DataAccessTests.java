@@ -4,7 +4,6 @@ import static org.easymock.EasyMock.createNiceMock;
 import static org.easymock.EasyMock.expect;
 import static org.easymock.EasyMock.replay;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.junit.Assert;
@@ -12,11 +11,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import pl.jarocky.clustering.core.DataAccess;
+import pl.jarocky.clustering.core.IDataAccess;
 import pl.jarocky.clustering.utils.IFileService;
 
 public class DataAccessTests
 {
-  private DataAccess _dataAccess;
+  private IDataAccess _dataAccess;
 
   @Before
   public void setUp() throws Exception
@@ -30,7 +30,7 @@ public class DataAccessTests
   @Test
   public void GetData_FileServiceReturnLineWithTwoValues_ReturnListWithOneItem() throws Exception
   {
-    List<BigDecimal[]> data = _dataAccess.GetData();
+    List<double[]> data = _dataAccess.getData();
 
     Assert.assertEquals(1, data.size());
   }
@@ -38,7 +38,7 @@ public class DataAccessTests
   @Test
   public void GetData_FileServiceReturnLineWithTwoValues_ReturnArrayWithTwoValues() throws Exception
   {
-    List<BigDecimal[]> data = _dataAccess.GetData();
+    List<double[]> data = _dataAccess.getData();
 
     Assert.assertEquals(2, data.get(0).length);
   }
@@ -46,17 +46,17 @@ public class DataAccessTests
   @Test
   public void GetData_FileServiceReturnLineWithTwoValues_ReturnExpectedFirstValue() throws Exception
   {
-    List<BigDecimal[]> data = _dataAccess.GetData();
+    List<double[]> data = _dataAccess.getData();
 
-    Assert.assertTrue((new BigDecimal("123.32")).equals(data.get(0)[0]));
+    Assert.assertEquals(123.32, data.get(0)[0], 0);
   }
 
   @Test
   public void GetData_FileServiceReturnLineWithTwoValues_ReturnExpectedSecondValue() throws Exception
   {
-    List<BigDecimal[]> data = _dataAccess.GetData();
+    List<double[]> data = _dataAccess.getData();
 
-    Assert.assertTrue((new BigDecimal("43.62")).equals(data.get(0)[1]));
+    Assert.assertEquals(43.62, data.get(0)[1], 0);
   }
 
   @Test
@@ -67,7 +67,7 @@ public class DataAccessTests
     replay(fileService);
     _dataAccess = new DataAccess(fileService);
 
-    List<BigDecimal[]> data = _dataAccess.GetData();
+    List<double[]> data = _dataAccess.getData();
 
     Assert.assertEquals(2, data.size());
   }
