@@ -31,6 +31,15 @@ public class FileService implements IFileService
       throw new Exception("Use init to initialize");
     }
 
-    return _reader.readLine();
+    String line = _reader.readLine();
+
+    if (line == null)
+    {
+      _reader.close();
+      _reader = null;
+      _initialized = false;
+    }
+
+    return line;
   }
 }
