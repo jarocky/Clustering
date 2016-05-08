@@ -3,13 +3,15 @@ package pl.jarocky.clustering.core;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.inject.Inject;
+
 import pl.jarocky.clustering.utils.IFileService;
 
 public class DataAccess implements IDataAccess
 {
   private IFileService _fileService;
 
-  public DataAccess(IFileService fileService)
+  @Inject public DataAccess(IFileService fileService)
   {
     _fileService = fileService;
   }

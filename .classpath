@@ -4,6 +4,19 @@
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="D:/WORK/git/Jarocky/Clustering/lib/easymock-3.4.jar"/>
+	<classpathentry kind="lib" path="lib/easymock-3.4.jar"/>
+	<classpathentry kind="lib" path="C:/HoryzontWork/git/Clustering/lib/aopalliance.jar"/>
+	<classpathentry kind="lib" path="C:/HoryzontWork/git/Clustering/lib/guice-3.0.jar"/>
+	<classpathentry kind="lib" path="C:/HoryzontWork/git/Clustering/lib/guice-assistedinject-3.0.jar"/>
+	<classpathentry kind="lib" path="C:/HoryzontWork/git/Clustering/lib/guice-grapher-3.0.jar"/>
+	<classpathentry kind="lib" path="C:/HoryzontWork/git/Clustering/lib/guice-jmx-3.0.jar"/>
+	<classpathentry kind="lib" path="C:/HoryzontWork/git/Clustering/lib/guice-jndi-3.0.jar"/>
+	<classpathentry kind="lib" path="C:/HoryzontWork/git/Clustering/lib/guice-multibindings-3.0.jar"/>
+	<classpathentry kind="lib" path="C:/HoryzontWork/git/Clustering/lib/guice-persist-3.0.jar"/>
+	<classpathentry kind="lib" path="C:/HoryzontWork/git/Clustering/lib/guice-servlet-3.0.jar"/>
+	<classpathentry kind="lib" path="C:/HoryzontWork/git/Clustering/lib/guice-spring-3.0.jar"/>
+	<classpathentry kind="lib" path="C:/HoryzontWork/git/Clustering/lib/guice-struts2-plugin-3.0.jar"/>
+	<classpathentry kind="lib" path="C:/HoryzontWork/git/Clustering/lib/guice-throwingproviders-3.0.jar"/>
+	<classpathentry kind="lib" path="C:/HoryzontWork/git/Clustering/lib/javax.inject.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

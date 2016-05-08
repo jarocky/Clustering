@@ -5,7 +5,7 @@ import javafx.beans.property.StringProperty;;
 
 public class ClusteringViewModel 
 {
-	private StringProperty _numberOfClusters;
+	private final StringProperty _numberOfClusters;
 	
 	public ClusteringViewModel()
 	{
