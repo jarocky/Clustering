@@ -1,4 +1,4 @@
-package pl.jarocky.clustering.core.pl;
+package pl.jarocky.testing.clustering.core;
 
 import static org.easymock.EasyMock.createNiceMock;
 import static org.easymock.EasyMock.expect;
