@@ -1,11 +1,11 @@
 package pl.jarocky.testing.clustering.core;
 
-import static org.easymock.EasyMock.createNiceMock;
 import static org.easymock.EasyMock.expect;
 import static org.easymock.EasyMock.replay;
 
 import java.util.List;
 
+import org.easymock.EasyMock;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +21,7 @@ public class DataAccessTests
   @Before
   public void setUp() throws Exception
   {
-    IFileService fileService = createNiceMock(IFileService.class);
+    IFileService fileService = EasyMock.createNiceMock(IFileService.class);
     expect(fileService.getNextLine()).andReturn("123.32;43.62");
     replay(fileService);
     _dataAccess = new DataAccess(fileService);
@@ -62,7 +62,7 @@ public class DataAccessTests
   @Test
   public void GetData_FileServiceReturnLineWithTwoValues_ReturnListWithTwoItems() throws Exception
   {
-    IFileService fileService = createNiceMock(IFileService.class);
+    IFileService fileService = EasyMock.createNiceMock(IFileService.class);
     expect(fileService.getNextLine()).andReturn("123.32;43.62").andReturn("656.65;24.79");
     replay(fileService);
     _dataAccess = new DataAccess(fileService);

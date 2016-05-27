@@ -12,7 +12,7 @@ import pl.jarocky.clustering.core.ClusteringService;
 
 public class Main extends Application
 {
-  private final Injector _injector = Guice.createInjector(new DependencyModule(".\\ClusteringFileName.txt"));
+  private final Injector _injector = Guice.createInjector(new DependencyModule("D:\\ClusteringFileName.txt"));
 
   @Override
   public void start(Stage primaryStage)
