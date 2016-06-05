@@ -1,5 +1,6 @@
 package pl.jarocky.clustering.application;
 
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;;
 
@@ -7,11 +8,13 @@ public class ClusteringViewModel
 {
   private final StringProperty _numberOfClusters;
   private final StringProperty _status;
+  private final SimpleDoubleProperty _progres;
 
   public ClusteringViewModel()
   {
     _numberOfClusters = new SimpleStringProperty("10");
     _status = new SimpleStringProperty("");
+    _progres = new SimpleDoubleProperty(0);
   }
 
   public String getNumberOfClusters()
@@ -42,5 +45,20 @@ public class ClusteringViewModel
   public StringProperty StatusProperty()
   {
     return _status;
+  }
+  
+  public String getProgres()
+  {
+    return _status.get();
+  }
+
+  public void setProgres(double progres)
+  {
+    _progres.set(progres);
+  }
+
+  public SimpleDoubleProperty ProgresProperty()
+  {
+    return _progres;
   }
 }
