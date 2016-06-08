@@ -1,6 +1,6 @@
 package pl.jarocky.clustering.core;
 
-public interface IProcessProgressIndicator
+public interface IProcessProgressController
 {
   void SetProgress(double progress);
 }

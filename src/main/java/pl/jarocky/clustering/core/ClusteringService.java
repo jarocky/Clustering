@@ -13,16 +13,41 @@ public class ClusteringService
 {
   private final IDataAccess _dataAccess;
   private final IRandomizer _randomizer;
+  private final IProcessProgress _processProgress;
 
   @Inject
-  public ClusteringService(IDataAccess dataAccess, IRandomizer randomizer)
+  public ClusteringService(IDataAccess dataAccess, IRandomizer randomizer, IProcessProgress processProgress)
   {
     _dataAccess = dataAccess;
     _randomizer = randomizer;
+    _processProgress = processProgress;
   }
 
   public void Proceed(String clusetersCount) throws Exception
   {
+    new Thread()
+    {
+      @Override
+      public void run()
+      {
+        try
+        {
+
+          for (int i = 0; i <= 100; i += 1)
+          {
+            _processProgress.CalculateProgress(i, 100);
+            Thread.sleep(100);
+          }
+
+        }
+        catch (InterruptedException ex)
+        {
+          System.err.println("Error on Thread Sleep");
+        }
+      }
+
+    }.start();
+
     int clusterCountInt = ConvertStringToInt(clusetersCount);
     List<double[]> data = _dataAccess.getData();
     Kmeans kmeans = new Kmeans(data, clusterCountInt, _randomizer);
@@ -34,7 +59,8 @@ public class ClusteringService
     try
     {
       return Integer.parseInt(clustersCount);
-    } catch (NumberFormatException ex)
+    }
+    catch (NumberFormatException ex)
     {
       throw new ValidationException("Niepoprawna liczba klastrów");
     }
