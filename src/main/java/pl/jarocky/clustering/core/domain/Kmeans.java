@@ -3,6 +3,7 @@ package pl.jarocky.clustering.core.domain;
 import java.util.Arrays;
 import java.util.List;
 
+import pl.jarocky.clustering.core.IProcessProgress;
 import pl.jarocky.clustering.utils.IRandomizer;
 
 public class Kmeans
@@ -10,9 +11,10 @@ public class Kmeans
   private List<double[]> _data;
   private int[] _clustering;
   private double[][] _centroids;
-  private IRandomizer _randomizer;
+  final private IRandomizer _randomizer;
+  final private IProcessProgress _processProgress;
 
-  public Kmeans(List<double[]> data, int clustersCount, IRandomizer randomizer)
+  public Kmeans(List<double[]> data, int clustersCount, IRandomizer randomizer, IProcessProgress processProgress)
   {
     if (clustersCount < 2)
     {
@@ -33,6 +35,7 @@ public class Kmeans
     _clustering = new int[data.size()];
     _centroids = new double[clustersCount][data.get(0).length];
     _randomizer = randomizer;
+    _processProgress = processProgress;
   }
 
   public int[] proceed()
@@ -125,6 +128,8 @@ public class Kmeans
         changed = true;
         _clustering[i] = clusterId;
       }
+
+      UpdateProgress(i, _data.size());
     }
 
     if (changed == false)
@@ -179,5 +184,13 @@ public class Kmeans
     }
 
     return clusterCounts;
+  }
+
+  private void UpdateProgress(int finished, int all)
+  {
+    if (_processProgress != null)
+    {
+      _processProgress.CalculateProgress(finished, all);
+    }
   }
 }

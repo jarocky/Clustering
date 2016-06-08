@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import pl.jarocky.clustering.core.ClusteringService;
 import pl.jarocky.clustering.core.IProcessProgress;
@@ -23,6 +24,8 @@ public class ClusteringController implements Initializable, IProcessProgressCont
   private Button _btProceed;
   @FXML
   private Label _lbStatus;
+  @FXML
+  private TextArea _taData;
   @FXML
   private ProgressBar _pbProcess;
 
@@ -43,13 +46,14 @@ public class ClusteringController implements Initializable, IProcessProgressCont
   {
     _tbNumberOfClusters.textProperty().bindBidirectional(_model.NumberOfClustersProperty());
     _lbStatus.textProperty().bind(_model.StatusProperty());
+    _taData.textProperty().bind(_model.DescriptionProperty());
     _pbProcess.progressProperty().bind(_model.ProgresProperty());
 
     _btProceed.setOnAction((event) ->
     {
       try
       {
-        _service.Proceed(_model.getNumberOfClusters());
+        _service.Proceed(_model.getNumberOfClusters(), _model);
       }
       catch (ValidationException ex)
       {

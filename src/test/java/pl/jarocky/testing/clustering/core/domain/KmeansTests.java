@@ -25,7 +25,7 @@ public class KmeansTests
     data.add(new double[]
     { 7, 8, 9 });
 
-    new Kmeans(data, 2, null);
+    new Kmeans(data, 2, null, null);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -39,7 +39,7 @@ public class KmeansTests
     data.add(new double[]
     { 7, 8, 9 });
 
-    new Kmeans(data, 1, _randomizer);
+    new Kmeans(data, 1, _randomizer, null);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -53,7 +53,7 @@ public class KmeansTests
     data.add(new double[]
     { 7, 8, 9 });
 
-    new Kmeans(data, 0, _randomizer);
+    new Kmeans(data, 0, _randomizer, null);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -67,7 +67,7 @@ public class KmeansTests
     data.add(new double[]
     { 7, 8, 9 });
 
-    new Kmeans(data, -1, _randomizer);
+    new Kmeans(data, -1, _randomizer, null);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -81,7 +81,7 @@ public class KmeansTests
     data.add(new double[]
     { 7, 8, 9 });
 
-    new Kmeans(data, 4, _randomizer);
+    new Kmeans(data, 4, _randomizer, null);
   }
 
   @Test
@@ -92,7 +92,7 @@ public class KmeansTests
     { 1, 2, 3 });
     data.add(new double[]
     { 4, 5, 6 });
-    Kmeans domain = new Kmeans(data, 2, _randomizer);
+    Kmeans domain = new Kmeans(data, 2, _randomizer, null);
 
     int[] clustering = domain.proceed();
 
@@ -107,7 +107,7 @@ public class KmeansTests
     { 1, 2, 3 });
     data.add(new double[]
     { 4, 5, 6 });
-    Kmeans domain = new Kmeans(data, 2, _randomizer);
+    Kmeans domain = new Kmeans(data, 2, _randomizer, null);
 
     int[] clustering = domain.proceed();
 
@@ -124,7 +124,7 @@ public class KmeansTests
     { 1, 10, 2 });
     data.add(new double[]
     { 2, 2, 3 });
-    Kmeans domain = new Kmeans(data, 2, _randomizer);
+    Kmeans domain = new Kmeans(data, 2, _randomizer, null);
 
     int[] clustering = domain.proceed();
 
@@ -141,7 +141,7 @@ public class KmeansTests
     { 1, 10, 2 });
     data.add(new double[]
     { 2, 2, 3 });
-    Kmeans domain = new Kmeans(data, 2, _randomizer);
+    Kmeans domain = new Kmeans(data, 2, _randomizer, null);
 
     int[] clustering = domain.proceed();
 
@@ -158,7 +158,7 @@ public class KmeansTests
     { 1, 10, 2 });
     data.add(new double[]
     { 2, 2, 3 });
-    Kmeans domain = new Kmeans(data, 2, _randomizer);
+    Kmeans domain = new Kmeans(data, 2, _randomizer, null);
 
     int[] clustering = domain.proceed();
 
@@ -177,7 +177,7 @@ public class KmeansTests
     { 2, 2, 3 });
     data.add(new double[]
     { 3, 5, 6 });
-    Kmeans domain = new Kmeans(data, 2, _randomizer);
+    Kmeans domain = new Kmeans(data, 2, _randomizer, null);
 
     int[] clustering = domain.proceed();
 
@@ -196,7 +196,7 @@ public class KmeansTests
     { 2, 2, 3 });
     data.add(new double[]
     { 3, 5, 6 });
-    Kmeans domain = new Kmeans(data, 2, _randomizer);
+    Kmeans domain = new Kmeans(data, 2, _randomizer, null);
 
     int[] clustering = domain.proceed();
 
@@ -215,7 +215,7 @@ public class KmeansTests
     { 2, 2, 3 });
     data.add(new double[]
     { 3, 5, 6 });
-    Kmeans domain = new Kmeans(data, 2, _randomizer);
+    Kmeans domain = new Kmeans(data, 2, _randomizer, null);
 
     int[] clustering = domain.proceed();
 
@@ -234,7 +234,7 @@ public class KmeansTests
     { 2, 2, 3 });
     data.add(new double[]
     { 3, 5, 6 });
-    Kmeans domain = new Kmeans(data, 2, _randomizer);
+    Kmeans domain = new Kmeans(data, 2, _randomizer, null);
 
     int[] clustering = domain.proceed();
 

@@ -14,44 +14,39 @@ public class ClusteringService
   private final IDataAccess _dataAccess;
   private final IRandomizer _randomizer;
   private final IProcessProgress _processProgress;
+  private final IResultBuilder _resultBuilder;
+  private boolean _inProgress;
 
   @Inject
-  public ClusteringService(IDataAccess dataAccess, IRandomizer randomizer, IProcessProgress processProgress)
+  public ClusteringService(IDataAccess dataAccess, IRandomizer randomizer, IProcessProgress processProgress,
+      IResultBuilder resultBuilder)
   {
     _dataAccess = dataAccess;
     _randomizer = randomizer;
     _processProgress = processProgress;
+    _resultBuilder = resultBuilder;
+    _inProgress = false;
   }
 
-  public void Proceed(String clusetersCount) throws Exception
+  public void Proceed(String clusetersCount, IResultUpdate resultUpdate) throws Exception
   {
-    new Thread()
+    if (!_inProgress)
     {
-      @Override
-      public void run()
+      _inProgress = true;
+      int clusterCountInt = ConvertStringToInt(clusetersCount);
+      List<double[]> data = _dataAccess.getData();
+      Kmeans kmeans = new Kmeans(data, clusterCountInt, _randomizer, _processProgress);
+      new Thread()
       {
-        try
+        @Override
+        public void run()
         {
-
-          for (int i = 0; i <= 100; i += 1)
-          {
-            _processProgress.CalculateProgress(i, 100);
-            Thread.sleep(100);
-          }
-
+          int[] clustering = kmeans.proceed();
+          resultUpdate.Update(_resultBuilder.Build(data, clustering, clusterCountInt));
+          _inProgress = false;
         }
-        catch (InterruptedException ex)
-        {
-          System.err.println("Error on Thread Sleep");
-        }
-      }
-
-    }.start();
-
-    int clusterCountInt = ConvertStringToInt(clusetersCount);
-    List<double[]> data = _dataAccess.getData();
-    Kmeans kmeans = new Kmeans(data, clusterCountInt, _randomizer);
-    kmeans.proceed();
+      }.start();
+    }
   }
 
   private int ConvertStringToInt(String clustersCount) throws ValidationException

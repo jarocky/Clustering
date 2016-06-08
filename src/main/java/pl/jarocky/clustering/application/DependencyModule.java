@@ -6,7 +6,9 @@ import pl.jarocky.clustering.core.ClusteringService;
 import pl.jarocky.clustering.core.DataAccess;
 import pl.jarocky.clustering.core.IDataAccess;
 import pl.jarocky.clustering.core.IProcessProgress;
+import pl.jarocky.clustering.core.IResultBuilder;
 import pl.jarocky.clustering.core.ProcessProgress;
+import pl.jarocky.clustering.core.ResultBuilder;
 import pl.jarocky.clustering.utils.FileService;
 import pl.jarocky.clustering.utils.IFileService;
 import pl.jarocky.clustering.utils.IRandomizer;
@@ -29,6 +31,7 @@ public class DependencyModule extends AbstractModule
     bind(IDataAccess.class).to(DataAccess.class);
     bind(IFileService.class).to(FileService.class);
     bind(IRandomizer.class).to(Randomizer.class);
+    bind(IResultBuilder.class).to(ResultBuilder.class);
     bindConstant().annotatedWith(FileService.ClusteringFileName.class).to(_clusteringFileName);
   }
 }
