@@ -8,6 +8,7 @@ import javax.xml.bind.ValidationException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
@@ -22,6 +23,8 @@ public class ClusteringController implements Initializable, IProcessProgressCont
   private TextField _tbNumberOfClusters;
   @FXML
   private Button _btProceed;
+  @FXML
+  private CheckBox _cbDataNormalize;
   @FXML
   private Label _lbStatus;
   @FXML
@@ -45,6 +48,7 @@ public class ClusteringController implements Initializable, IProcessProgressCont
   public void initialize(URL arg0, ResourceBundle arg1)
   {
     _tbNumberOfClusters.textProperty().bindBidirectional(_model.NumberOfClustersProperty());
+    _cbDataNormalize.selectedProperty().bindBidirectional(_model.DataNormalizeProperty());
     _lbStatus.textProperty().bind(_model.StatusProperty());
     _taData.textProperty().bind(_model.DescriptionProperty());
     _pbProcess.progressProperty().bind(_model.ProgresProperty());
@@ -53,7 +57,7 @@ public class ClusteringController implements Initializable, IProcessProgressCont
     {
       try
       {
-        _service.Proceed(_model.getNumberOfClusters(), _model);
+        _service.Proceed(_model.getNumberOfClusters(), _model.getDataNormalize(), _model);
       }
       catch (ValidationException ex)
       {
@@ -71,6 +75,6 @@ public class ClusteringController implements Initializable, IProcessProgressCont
   @Override
   public void SetProgress(double progress)
   {
-    _model.setProgres(progress);
+    _model.setProgress(progress);
   }
 }

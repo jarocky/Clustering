@@ -1,5 +1,6 @@
 package pl.jarocky.clustering.application;
 
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -8,17 +9,21 @@ import pl.jarocky.clustering.core.IResultUpdate;;
 
 public class ClusteringViewModel implements IResultUpdate
 {
+  public boolean IsGoodClustering = false;
+
   private final StringProperty _numberOfClusters;
+  private final SimpleBooleanProperty _dataNormalize;
   private final StringProperty _status;
   private final StringProperty _description;
-  private final SimpleDoubleProperty _progres;
+  private final SimpleDoubleProperty _progress;
 
   public ClusteringViewModel()
   {
     _numberOfClusters = new SimpleStringProperty("10");
+    _dataNormalize = new SimpleBooleanProperty(false);
     _status = new SimpleStringProperty("");
     _description = new SimpleStringProperty("");
-    _progres = new SimpleDoubleProperty(0);
+    _progress = new SimpleDoubleProperty(0);
   }
 
   public String getNumberOfClusters()
@@ -34,6 +39,21 @@ public class ClusteringViewModel implements IResultUpdate
   public StringProperty NumberOfClustersProperty()
   {
     return _numberOfClusters;
+  }
+
+  public boolean getDataNormalize()
+  {
+    return _dataNormalize.get();
+  }
+
+  public void setDataNormalize(boolean dataNormalize)
+  {
+    _dataNormalize.set(dataNormalize);
+  }
+
+  public SimpleBooleanProperty DataNormalizeProperty()
+  {
+    return _dataNormalize;
   }
 
   public String getStatus()
@@ -56,14 +76,14 @@ public class ClusteringViewModel implements IResultUpdate
     return _status.get();
   }
 
-  public void setProgres(double progres)
+  public void setProgress(double progres)
   {
-    _progres.set(progres);
+    _progress.set(progres);
   }
 
   public SimpleDoubleProperty ProgresProperty()
   {
-    return _progres;
+    return _progress;
   }
 
   public String getDescription()
@@ -84,7 +104,7 @@ public class ClusteringViewModel implements IResultUpdate
   @Override
   public void Update(ClusteringResult result)
   {
-    if (result != null && result.Clusters != null)
+    if (result != null && result.Clusters != null && result.IsGoodClustering())
     {
       StringBuffer sb = new StringBuffer();
       for (int i = 0; i < result.Clusters.length; i++)
@@ -92,6 +112,17 @@ public class ClusteringViewModel implements IResultUpdate
         sb.append("Numer klastra: " + (i + 1) + "; Liczba elementów: " + result.Clusters[i] + "\n");
       }
       setDescription(sb.toString());
+      IsGoodClustering = true;
     }
+    else
+    {
+      IsGoodClustering = false;
+    }
+  }
+
+  @Override
+  public boolean IsGoodClustering()
+  {
+    return IsGoodClustering;
   }
 }

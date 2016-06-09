@@ -4,7 +4,9 @@ import com.google.inject.AbstractModule;
 
 import pl.jarocky.clustering.core.ClusteringService;
 import pl.jarocky.clustering.core.DataAccess;
+import pl.jarocky.clustering.core.DataNormalizer;
 import pl.jarocky.clustering.core.IDataAccess;
+import pl.jarocky.clustering.core.IDataNormalizer;
 import pl.jarocky.clustering.core.IProcessProgress;
 import pl.jarocky.clustering.core.IResultBuilder;
 import pl.jarocky.clustering.core.ProcessProgress;
@@ -32,6 +34,7 @@ public class DependencyModule extends AbstractModule
     bind(IFileService.class).to(FileService.class);
     bind(IRandomizer.class).to(Randomizer.class);
     bind(IResultBuilder.class).to(ResultBuilder.class);
+    bind(IDataNormalizer.class).to(DataNormalizer.class);
     bindConstant().annotatedWith(FileService.ClusteringFileName.class).to(_clusteringFileName);
   }
 }

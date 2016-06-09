@@ -4,7 +4,6 @@ import java.util.List;
 
 public class ResultBuilder implements IResultBuilder
 {
-
   @Override
   public ClusteringResult Build(List<double[]> data, int[] clustering, int clustersCount)
   {
