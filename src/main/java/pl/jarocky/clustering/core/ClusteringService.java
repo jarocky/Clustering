@@ -53,9 +53,9 @@ public class ClusteringService
             Kmeans kmeans = new Kmeans(data, clusterCountInt, _randomizer, _processProgress);
             int[] clustering = kmeans.proceed();
             resultUpdate.Update(_resultBuilder.Build(data, clustering, clusterCountInt));
-            _inProgress = false;
           }
           while (!resultUpdate.IsGoodClustering());
+          _inProgress = false;
         }
       }.start();
     }

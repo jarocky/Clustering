@@ -1,5 +1,6 @@
 package pl.jarocky.clustering.application;
 
+import javafx.application.Platform;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -9,7 +10,10 @@ import pl.jarocky.clustering.core.IResultUpdate;;
 
 public class ClusteringViewModel implements IResultUpdate
 {
-  public boolean IsGoodClustering = false;
+  private final int DefaultClusterCount = 10;
+  private final int MaxIterations = 1000;
+  private int CurrentIteration = 0;
+  private boolean _isGoodClustering = false;
 
   private final StringProperty _numberOfClusters;
   private final SimpleBooleanProperty _dataNormalize;
@@ -81,7 +85,7 @@ public class ClusteringViewModel implements IResultUpdate
     _progress.set(progres);
   }
 
-  public SimpleDoubleProperty ProgresProperty()
+  public SimpleDoubleProperty ProgressProperty()
   {
     return _progress;
   }
@@ -111,18 +115,26 @@ public class ClusteringViewModel implements IResultUpdate
       {
         sb.append("Numer klastra: " + (i + 1) + "; Liczba elementów: " + result.Clusters[i] + "\n");
       }
-      setDescription(sb.toString());
-      IsGoodClustering = true;
+      Platform.runLater(() -> setDescription(sb.toString()));
+      _isGoodClustering = true;
+      CurrentIteration = 0;
     }
     else
     {
-      IsGoodClustering = false;
+      _isGoodClustering = false;
+      CurrentIteration++;
+      if (CurrentIteration == MaxIterations)
+      {
+        CurrentIteration = 0;
+        Platform.runLater(() -> setStatus("Clustering process failed!"));
+        _isGoodClustering = true;
+      }
     }
   }
 
   @Override
   public boolean IsGoodClustering()
   {
-    return IsGoodClustering;
+    return _isGoodClustering;
   }
 }

@@ -51,22 +51,22 @@ public class ClusteringController implements Initializable, IProcessProgressCont
     _cbDataNormalize.selectedProperty().bindBidirectional(_model.DataNormalizeProperty());
     _lbStatus.textProperty().bind(_model.StatusProperty());
     _taData.textProperty().bind(_model.DescriptionProperty());
-    _pbProcess.progressProperty().bind(_model.ProgresProperty());
+    _pbProcess.progressProperty().bind(_model.ProgressProperty());
 
     _btProceed.setOnAction((event) ->
     {
       try
       {
+        _model.setStatus("");
+        _model.setDescription("");
         _service.Proceed(_model.getNumberOfClusters(), _model.getDataNormalize(), _model);
       }
       catch (ValidationException ex)
       {
-        // TODO: show communicate
         _model.setStatus(ex.getMessage());
       }
       catch (Exception ex)
       {
-        // TODO: exception to log
         _model.setStatus(ex.getMessage());
       }
     });
