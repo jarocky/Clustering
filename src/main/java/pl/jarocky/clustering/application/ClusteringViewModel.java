@@ -10,7 +10,7 @@ import pl.jarocky.clustering.core.IResultUpdate;;
 
 public class ClusteringViewModel implements IResultUpdate
 {
-  private final int DefaultClusterCount = 10;
+  private final String DefaultClusterCount = "10";
   private final int MaxIterations = 1000;
   private int CurrentIteration = 0;
   private boolean _isGoodClustering = false;
@@ -23,7 +23,7 @@ public class ClusteringViewModel implements IResultUpdate
 
   public ClusteringViewModel()
   {
-    _numberOfClusters = new SimpleStringProperty("10");
+    _numberOfClusters = new SimpleStringProperty(DefaultClusterCount);
     _dataNormalize = new SimpleBooleanProperty(false);
     _status = new SimpleStringProperty("");
     _description = new SimpleStringProperty("");

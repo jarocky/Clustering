@@ -13,7 +13,7 @@ import pl.jarocky.clustering.core.IProcessProgress;
 
 public class Main extends Application
 {
-  private final Injector _injector = Guice.createInjector(new DependencyModule("D:\\ClusteringFileName.txt"));
+  private final Injector _injector = Guice.createInjector(new DependencyModule("C:\\ClusteringFileName.txt"));
 
   @Override
   public void start(Stage primaryStage)
