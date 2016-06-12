@@ -1,13 +1,17 @@
 package pl.jarocky.clustering.core;
 
+import java.util.List;
+
 public class ClusteringResult
 {
-  public ClusteringResult(int[] clusters)
+  public ClusteringResult(int[] clusters, int[] clustering)
   {
     Clusters = clusters;
+    Clustering = clustering;
   }
 
   public final int[] Clusters;
+  public final int[] Clustering;
 
   public boolean IsGoodClustering()
   {

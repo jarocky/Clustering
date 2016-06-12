@@ -13,6 +13,6 @@ public class ResultBuilder implements IResultBuilder
       clusters[clustering[i]]++;
     }
 
-    return new ClusteringResult(clusters);
+    return new ClusteringResult(clusters, clustering);
   }
 }

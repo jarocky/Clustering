@@ -115,6 +115,12 @@ public class ClusteringViewModel implements IResultUpdate
       {
         sb.append("Numer klastra: " + (i + 1) + "; Liczba elementów: " + result.Clusters[i] + "\n");
       }
+      
+      for (int i = 0; i < result.Clustering.length; i++)
+      {
+        sb.append("Numer elementu: " + (i + 1) + "; Numer klastra: " + (result.Clustering[i]+1) + "\n");
+      }
+      
       Platform.runLater(() -> setDescription(sb.toString()));
       _isGoodClustering = true;
       CurrentIteration = 0;
